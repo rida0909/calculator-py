@@ -1,7 +1,6 @@
 from tkinter import*
 from tkinter import messagebox
 import math
-import buttons
 
 root = Tk()
 root.title("Smart Calculator")
@@ -12,7 +11,7 @@ root.iconbitmap('icon.ico')
 def sciCal() :
     root.geometry("750x800+400+0")
     display.config(width = "25")
-    buttons.scibtn()
+    scibtn()
 
 def intrifunc() :
     root.btnsin.grid_remove()
@@ -46,10 +45,9 @@ def simple() :
     root.btnexp.grid_remove()
     root.btnsci.grid(row=5, column=0,pady=10)
     root.geometry("600x600+500+50")
-    
 
-    root.btnln.grid_remove()
-
+    for i in buttons :
+        i.grid_remove()
 
 def decimal():
     pass
@@ -229,6 +227,59 @@ btnequals = Button(root, bg="#ec4d37", fg="white", text="=", font=("arial",30,"b
 btnequals.grid(row=5, column=3)
 btndec = Button(root, bg="#110c11", fg="white", text=".", font=("arial",30,"bold"), bd=5, height=1, width=5, command=decimal, activebackground='#696969', activeforeground='white')
 btndec.grid(row=5, column=2)
+
+buttons = []
+
+def scibtn() :
+    btnln = Button(root, bg="#605052", fg="white", text="ln", font=("arial",30,"bold"), bd=5, height=1, width=5, command=lnfunc, activebackground='#696969', activeforeground='white')
+    btnln.grid(row=6, column=0)
+    buttons.append(btnln)
+    btnlog = Button(root, bg="#605052", fg="white", text="log", font=("arial",30,"bold"), bd=5, height=1, width=5, command=logfunc, activebackground='#696969', activeforeground='white')
+    btnlog.grid(row=6, column=1)
+    buttons.append(btnlog)
+    btnopenbr = Button(root, bg="#605052", fg="white", text="(", font=("arial",30,"bold"), bd=5, height=1, width=5, command=lambda:click("("), activebackground='#696969', activeforeground='white')
+    btnopenbr.grid(row=6, column=2)
+    buttons.append(btnopenbr)
+    btnclosebr = Button(root, bg="#605052", fg="white", text=")", font=("arial",30,"bold"), bd=5, height=1, width=5, command=lambda:click(')'), activebackground='#696969', activeforeground='white')
+    btnclosebr.grid(row=6, column=3)
+    buttons.append(btnclosebr)
+    root.btnsci.grid_remove()
+    root.btnexp = Button(root, bg="#605052", fg="white", text="e", font=("arial",30,"bold"), bd=5, height=1, width=5, command=expo, activebackground='#696969', activeforeground='white')
+    root.btnexp.grid(row=5, column=0,pady=10)
+
+    root.btndeg = Button(root, bg="#605052", fg="white", text="deg", font=("arial",30,"bold"), bd=5, height=1, width=5, command=degfunc, activebackground='#696969', activeforeground='white')
+    root.btndeg.grid(row=7, column=0, pady =10)
+    buttons.append(root.btndeg)
+    root.btnsin = Button(root, bg="#605052", fg="white", text="sin", font=("arial",30,"bold"), bd=5, height=1, width=5, command=sinfunc, activebackground='#696969', activeforeground='white')
+    root.btnsin.grid(row=7, column=1)
+    buttons.append(root.btnsin)
+    root.btncos = Button(root, bg="#605052", fg="white", text="cos", font=("arial",30,"bold"), bd=5, height=1, width=5, command=cosfunc, activebackground='#696969', activeforeground='white')
+    root.btncos.grid(row=7, column=2)
+    buttons.append(root.btncos)
+    root.btntan = Button(root, bg="#605052", fg="white", text="tan", font=("arial",30,"bold"), bd=5, height=1, width=5, command=tanfunc, activebackground='#696969', activeforeground='white')
+    root.btntan.grid(row=7, column=3)
+    buttons.append(root.btntan)
+            
+    btn2nd = Button(root, bg="#ec4d37", fg="white", text="2nd", font=("arial",30,"bold"), bd=5, height=1, width=5, command=intrifunc, activebackground='#696969', activeforeground='white')
+    btn2nd.grid(row=1, column=4)
+    buttons.append(btn2nd)
+    btnpow = Button(root, bg="#605052", fg="white", text="^", font=("arial",30,"bold"), bd=5, height=1, width=5, command=power, activebackground='#696969', activeforeground='white')
+    btnpow.grid(row=2, column=4)
+    buttons.append(btnpow)
+    btnsqrt = Button(root, bg="#605052", fg="white", text="sqrt", font=("arial",30,"bold"), bd=5, height=1, width=5, command=sqrtfunc, activebackground='#696969', activeforeground='white')
+    btnsqrt.grid(row=3, column=4)
+    buttons.append(btnsqrt)
+    btnfact = Button(root, bg="#605052", fg="white", text="!", font=("arial",30,"bold"), bd=5, height=1, width=5, command=factfunc, activebackground='#696969', activeforeground='white')
+    btnfact.grid(row=4, column=4)
+    buttons.append(btnfact)
+    btnres = Button(root, bg="#605052", fg="white", text="1/x", font=("arial",30,"bold"), bd=5, height=1, width=5, command=resfunc, activebackground='#696969', activeforeground='white')
+    btnres.grid(row=5, column=4)
+    buttons.append(btnres)
+    btnpi = Button(root, bg="#605052", fg="white", text="pi", font=("arial",30,"bold"), bd=5, height=1, width=5, command=pifunc, activebackground='#696969', activeforeground='white')
+    btnpi.grid(row=6, column=4)
+    buttons.append(btnpi)
+    root.btnsim = Button(root, bg="#ec4d37", fg="white", text="simple", font=("arial",30,"bold"), bd=5, height=1, width=5, command=simple, activebackground='#696969', activeforeground='white')
+    root.btnsim.grid(row=7, column=4)
 
 
 
