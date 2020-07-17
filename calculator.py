@@ -27,17 +27,53 @@ def intrifunc() :
     root.btn1st = Button(root, bg="#ec4d37", fg="white", text="1st", font=("arial",30,"bold"), bd=5, height=1, width=5, command=trifunc, activebackground='#696969', activeforeground='white')
     root.btn1st.grid(row=1, column=4)
 
+def trifunc() :
+    root.btnsinin.grid_remove()
+    root.btncosin.grid_remove()
+    root.btntanin.grid_remove()
+    root.btn1st.grid_remove()
+
+    root.btnsin.grid(row=7, column=1)
+    root.btncos.grid(row=7, column=2)
+    root.btntan.grid(row=7, column=3)
+    root.btn2nd.grid(row=1, column=4)
+
 def power() :
-    pass
+    global operation
+    messagebox.showinfo("read","the last digit in the equation is connsidered as power")
+    pwr = int(operation[-1])
+    num = equation.get()
+    num = num[0:len(num)-1]
+    eq = (eval(num))
+    try :
+        result = math.pow(eq,pwr)
+        operation = str(result)
+        equation.set(result)
+    except :
+        messagebox.showinfo("invalid input", "first enter an input than command an operation")
 
 def factfunc() :
-    pass
+    global operation 
+    try :
+        result = math.factorial(eval(equation.get()))
+        operation = str(result)
+        equation.set(operation)
+    except :
+        messagebox.showinfo("invalid input", "first enter an input than command an operation")
 
 def resfunc() :
-    pass
+    global operation 
+    try :
+        result = eval(equation.get())
+        operation = 1/result
+        equation.set(operation)
+    except :
+        messagebox.showinfo("invalid input", "first enter an input than command an operation")
 
 def pifunc() :
-    pass
+    global operation 
+    operation += pi
+    equation.set(operation)
 
 def simple() :
     display.config(width = "20")
@@ -49,17 +85,32 @@ def simple() :
     for i in buttons :
         i.grid_remove()
 
-def decimal():
-    pass
-
 def insinfunc() :
-    pass
+    global operation
+    try :
+        result = math.asinh(eval(equation.get()))
+        operation = str(result)
+        equation.set(result)
+    except :
+        messagebox.showinfo("invalid input", "first enter an input than command an operation")
 
 def incosfunc() :
-    pass
+    global operation
+    try :
+        result = math.acosh(eval(equation.get()))
+        operation = str(result)
+        equation.set(result)
+    except :
+        messagebox.showinfo("invalid input", "first enter an input than command an operation")
 
 def intanfunc() :
-    pass
+    global operation
+    try :
+        result = math.atanh(eval(equation.get()))
+        operation = str(result)
+        equation.set(result)
+    except :
+        messagebox.showinfo("invalid input", "first enter an input than command an operation")
 
 def expo() :
     global operation
@@ -225,7 +276,7 @@ btn0 = Button(root, bg="#110c11", fg="white", text="0", font=("arial",30,"bold")
 btn0.grid(row=5, column=1)
 btnequals = Button(root, bg="#ec4d37", fg="white", text="=", font=("arial",30,"bold"), bd=5, height=1, width=5, command=equal, activebackground='#696969', activeforeground='white')
 btnequals.grid(row=5, column=3)
-btndec = Button(root, bg="#110c11", fg="white", text=".", font=("arial",30,"bold"), bd=5, height=1, width=5, command=decimal, activebackground='#696969', activeforeground='white')
+btndec = Button(root, bg="#110c11", fg="white", text=".", font=("arial",30,"bold"), bd=5, height=1, width=5, command=lambda:click('.'), activebackground='#696969', activeforeground='white')
 btndec.grid(row=5, column=2)
 
 buttons = []
@@ -260,9 +311,9 @@ def scibtn() :
     root.btntan.grid(row=7, column=3)
     buttons.append(root.btntan)
             
-    btn2nd = Button(root, bg="#ec4d37", fg="white", text="2nd", font=("arial",30,"bold"), bd=5, height=1, width=5, command=intrifunc, activebackground='#696969', activeforeground='white')
-    btn2nd.grid(row=1, column=4)
-    buttons.append(btn2nd)
+    root.btn2nd = Button(root, bg="#ec4d37", fg="white", text="2nd", font=("arial",30,"bold"), bd=5, height=1, width=5, command=intrifunc, activebackground='#696969', activeforeground='white')
+    root.btn2nd.grid(row=1, column=4)
+    buttons.append(root.btn2nd)
     btnpow = Button(root, bg="#605052", fg="white", text="^", font=("arial",30,"bold"), bd=5, height=1, width=5, command=power, activebackground='#696969', activeforeground='white')
     btnpow.grid(row=2, column=4)
     buttons.append(btnpow)
